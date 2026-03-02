@@ -109,25 +109,25 @@ Run the project-audit skill on this project. Read all relevant files and produce
 
 **What makes it different:** It includes stage-appropriate advice. A solo developer with 5 users gets different priorities than a team with 500 users. It won't tell you to spend a day writing tests when you should be shipping features.
 
-[Full skill file →](SKILL.md)
+[Full skill file →](skills/project-audit/SKILL.md)
 
 ### Design System
 
 Auto-loads when you're doing UI work. Enforces your design tokens, Tailwind-only styling, semantic HTML, accessibility standards, and component reuse. Prevents Claude from generating random colors and duplicate components.
 
-[Full skill file →](mnt/user-data/outputs/elite-claude-playbook-repo/skills/design-system/SKILL.md)
+[Full skill file →](skills/design-system/SKILL.md)
 
 ### API Patterns
 
 Auto-loads when creating or modifying API routes. Enforces a strict route structure: authenticate → validate → business logic → response. Requires Zod validation, ORM usage, proper status codes, and PII-free logging.
 
-[Full skill file →](mnt/user-data/outputs/elite-claude-playbook-repo/skills/api-patterns/SKILL.md)
+[Full skill file →](skills/api-patterns/SKILL.md)
 
 ### Content Writer
 
 Auto-loads for marketing and content tasks. Provides templates for blog posts, LinkedIn posts, and email newsletters with platform-specific formatting, SEO optimization, and CTA requirements.
 
-[Full skill file →](mnt/user-data/outputs/elite-claude-playbook-repo/skills/content-writer/SKILL.md)
+[Full skill file →](skills/content-writer/SKILL.md)
 
 ---
 
@@ -206,7 +206,7 @@ Sends a macOS notification with sound when Claude needs your attention. No more 
 
 > **Note:** The notification hook is macOS-only. For Linux, replace with `notify-send`. For Windows, use PowerShell toast notifications.
 
-[Full hooks config →](hooks-config.json)
+[Full hooks config →](hooks/hooks-config.json)
 
 ---
 
@@ -224,8 +224,8 @@ CLAUDE.md is the single highest-impact file in your project. It loads into every
 
 ### Available Templates
 
-- [Web App (Next.js + Supabase + Tailwind)](claude-md-webapp.md)
-- [Mobile App (React Native / Expo)](claude-md-mobile.md)
+- [Web App (Next.js + Supabase + Tailwind)](templates/claude-md-webapp.md)
+- [Mobile App (React Native / Expo)](templates/claude-md-mobile.md)
 
 ---
 
