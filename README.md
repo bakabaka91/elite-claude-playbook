@@ -36,7 +36,7 @@ elite-claude-playbook/
 
 ```bash
 # Clone the repo
-git clone https://github.com/santoshushasrinivasa/elite-claude-playbook.git
+git clone https://github.com/bakabaka91/elite-claude-playbook.git
 
 # Copy skills into your project
 cp -r elite-claude-playbook/skills/* your-project/.claude/skills/
