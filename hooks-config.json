@@ -1,0 +1,36 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx prettier --write \"$CLAUDE_FILE_PATH\" 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_TOOL_INPUT\" | grep -qE 'rm -rf /|rm -rf \\.|DROP TABLE|DROP DATABASE|DELETE FROM.*WHERE 1|git push.*--force|git push.*-f'; then echo '{\"decision\": \"block\", \"reason\": \"BLOCKED: Dangerous command detected. Use a safer alternative.\"}'; fi"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "which osascript >/dev/null 2>&1 && osascript -e 'display notification \"Claude needs your attention\" with title \"Claude Code\" sound name \"Glass\"' || (which notify-send >/dev/null 2>&1 && notify-send 'Claude Code' 'Claude needs your attention') || true"
+          }
+        ]
+      }
+    ]
+  }
+}
