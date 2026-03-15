@@ -16,71 +16,79 @@ This playbook has **two distinct tracks:**
 Individual developers, startups, and small product teams. Focus: shipping fast with quality guardrails.
 - **What you get:** Project audit, design system, API patterns, content creation, database migrations
 - **Philosophy:** Structure over prompts. Context engineering eliminates wasted tokens.
-- **Install path:** Copy `/` (root) skills, commands, and hooks into your project
+- **Install path:** Copy `/solo-builders/` skills, commands, and hooks into your project
+- **Details:** [solo-builders/ →](solo-builders/README.md)
 
 ### 🏢 **Organizations & Scale-ups** (50-150+ engineers)
 Governance, compliance, incident response, cost control, multi-service coordination.
 - **What you get:** SLO tracking, service dependencies, data classification, feature flags, CI/CD governance
 - **Philosophy:** Consistency, safety, and visibility at scale. Team structure mirrors code structure.
 - **Install path:** Copy `/organizations/` skills, commands, and hooks into your project
+- **Details:** [organizations/ →](organizations/README.md)
 
 ---
 
 ## Folder Structure
 
+Two parallel paths, clearly organized:
+
 ```
 elite-claude-playbook/
 │
-├── 📁 Solo Builders & Small Teams (root level)
-│   ├── skills/                    # On-demand context
-│   │   ├── project-audit/         # Score your setup out of 100
-│   │   ├── design-system/         # UI/styling standards
-│   │   ├── api-patterns/          # API route conventions
-│   │   ├── content-writer/        # Marketing & content creation
-│   │   └── migration-guide/       # Safe database migration workflow
+├── solo-builders/             # 🚀 1-50 engineers
+│   ├── README.md              # Solo builder guide
+│   ├── skills/                # 5 skills
+│   │   ├── project-audit/     # Score your setup out of 100
+│   │   ├── design-system/     # UI/styling standards
+│   │   ├── api-patterns/      # API route conventions
+│   │   ├── content-writer/    # Marketing & content creation
+│   │   └── migration-guide/   # Safe database migration workflow
 │   │
-│   ├── commands/                  # Slash command templates
-│   │   ├── catchup.md             # Session start status report
-│   │   ├── deploy-check.md        # Pre-deploy verification
-│   │   ├── pr.md                  # Automated PR workflow
-│   │   ├── plan.md                # Implementation planning
-│   │   └── migrate.md             # Safe database migrations
+│   ├── commands/              # 5 commands
+│   │   ├── catchup.md         # Session start status report
+│   │   ├── deploy-check.md    # Pre-deploy verification
+│   │   ├── pr.md              # Automated PR workflow
+│   │   ├── plan.md            # Implementation planning
+│   │   └── migrate.md         # Safe database migrations
 │   │
 │   ├── hooks/
-│   │   └── hooks-config.json      # Auto-format, safety guards, notifications
+│   │   └── hooks-config.json  # Auto-format, safety guards, notifications
 │   │
-│   └── templates/                 # CLAUDE.md starter templates
+│   └── templates/             # 2 CLAUDE.md templates
 │       ├── claude-md-webapp.md    # Web app (Next.js / React)
 │       └── claude-md-mobile.md    # Mobile app (React Native / Expo)
 │
-└── 📁 Organizations & Scale-ups
-    └── organizations/
-        ├── README.md              # Org-specific documentation
-        ├── skills/                # 9 enterprise skills
-        │   ├── org-audit/         # Compliance + team health + cost governance
-        │   ├── incident-response/ # P0/P1/P2/P3 workflows with SLAs
-        │   ├── access-control/    # IAM, RBAC, least-privilege audit
-        │   ├── dependency-governance/ # License compliance + vulns
-        │   ├── cost-governance/   # Token budgets, chargeback models
-        │   ├── slo-tracking/      # Error budgets, reliability targets
-        │   ├── service-dependencies/ # Blast radius, failure modes
-        │   ├── data-classification/ # PCI/HIPAA/GDPR handling rules
-        │   └── multi-service-patterns/ # Service contracts, versioning
-        │
-        ├── commands/              # 5 org-level commands
-        │   ├── ci-governance.md   # Branch protection + status checks
-        │   ├── deploy-with-flags.md # Canary rollout + auto-rollback
-        │   ├── incident.md        # Incident response initiation
-        │   ├── security-review.md # Pre-merge security audit
-        │   └── handoff.md         # End-of-session documentation
-        │
-        ├── hooks/
-        │   └── hooks-config-org.json # Extended safety + audit logging
-        │
-        └── templates/             # Team CLAUDE.md templates
-            ├── claude-md-service.md   # Microservice template
-            ├── claude-md-platform.md  # Platform/infra template
-            └── claude-md-team.md      # Generic team template
+├── organizations/             # 🏢 50-150+ engineers
+│   ├── README.md              # Org guide
+│   ├── skills/                # 9 skills
+│   │   ├── org-audit/         # Compliance + team health + cost
+│   │   ├── incident-response/ # P0/P1/P2/P3 workflows
+│   │   ├── access-control/    # IAM, RBAC, least-privilege
+│   │   ├── dependency-governance/ # License compliance + vulns
+│   │   ├── cost-governance/   # Token budgets, chargeback
+│   │   ├── slo-tracking/      # Error budgets, reliability
+│   │   ├── service-dependencies/ # Blast radius, failure modes
+│   │   ├── data-classification/ # PCI/HIPAA/GDPR rules
+│   │   └── multi-service-patterns/ # Service contracts, versioning
+│   │
+│   ├── commands/              # 5 commands
+│   │   ├── ci-governance.md   # Branch protection + status checks
+│   │   ├── deploy-with-flags.md # Canary rollout + auto-rollback
+│   │   ├── incident.md        # Incident response initiation
+│   │   ├── security-review.md # Pre-merge security audit
+│   │   └── handoff.md         # End-of-session documentation
+│   │
+│   ├── hooks/
+│   │   └── hooks-config-org.json # Extended safety + audit logging
+│   │
+│   └── templates/             # 3 team CLAUDE.md templates
+│       ├── claude-md-service.md   # Microservice
+│       ├── claude-md-platform.md  # Platform/infra
+│       └── claude-md-team.md      # Generic team
+│
+├── README.md                  # Main hub (this file)
+├── LICENSE
+└── .gitignore
 ```
 
 ## Quick Install
@@ -93,10 +101,10 @@ elite-claude-playbook/
 # Clone the repo
 git clone https://github.com/bakabaka91/elite-claude-playbook.git
 
-# Copy all skills, commands, hooks (root level only)
-cp -r elite-claude-playbook/skills/* your-project/.claude/skills/
-cp -r elite-claude-playbook/commands/* your-project/.claude/commands/
-cp elite-claude-playbook/hooks/hooks-config.json your-project/.claude/settings.json
+# Copy all solo-builder skills, commands, hooks
+cp -r elite-claude-playbook/solo-builders/skills/* your-project/.claude/skills/
+cp -r elite-claude-playbook/solo-builders/commands/* your-project/.claude/commands/
+cp elite-claude-playbook/solo-builders/hooks/hooks-config.json your-project/.claude/settings.json
 
 # Restart Claude Code
 cd your-project && claude
@@ -106,14 +114,16 @@ cd your-project && claude
 
 ```bash
 # Just the audit skill
-cp -r elite-claude-playbook/skills/project-audit your-project/.claude/skills/
+cp -r elite-claude-playbook/solo-builders/skills/project-audit your-project/.claude/skills/
 
 # Just the migration guide skill
-cp -r elite-claude-playbook/skills/migration-guide your-project/.claude/skills/
+cp -r elite-claude-playbook/solo-builders/skills/migration-guide your-project/.claude/skills/
 
 # Just the hooks
-cp elite-claude-playbook/hooks/hooks-config.json your-project/.claude/settings.json
+cp elite-claude-playbook/solo-builders/hooks/hooks-config.json your-project/.claude/settings.json
 ```
+
+[Solo builders guide →](solo-builders/README.md)
 
 ### For Organizations & Scale-ups
 
@@ -149,15 +159,17 @@ cp -r elite-claude-playbook/organizations/skills/service-dependencies your-proje
 cp -r elite-claude-playbook/organizations/skills/data-classification your-project/.claude/skills/
 ```
 
+[Org guide →](organizations/README.md)
+
 **Or combine both paths** (solo + org):
 
 ```bash
-# Install all skills (root + org)
-cp -r elite-claude-playbook/skills/* your-project/.claude/skills/
+# Install all skills (solo + org)
+cp -r elite-claude-playbook/solo-builders/skills/* your-project/.claude/skills/
 cp -r elite-claude-playbook/organizations/skills/* your-project/.claude/skills/
 
-# Install all commands (root + org)
-cp -r elite-claude-playbook/commands/* your-project/.claude/commands/
+# Install all commands (solo + org)
+cp -r elite-claude-playbook/solo-builders/commands/* your-project/.claude/commands/
 cp -r elite-claude-playbook/organizations/commands/* your-project/.claude/commands/
 ```
 
