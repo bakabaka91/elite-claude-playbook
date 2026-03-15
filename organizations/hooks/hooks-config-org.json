@@ -1,0 +1,48 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx prettier --write \"$CLAUDE_FILE_PATH\" 2>/dev/null || true"
+          },
+          {
+            "type": "command",
+            "command": "mkdir -p .claude/audit && echo \"[$(date -u +'%Y-%m-%d %H:%M:%S UTC')] Written: $CLAUDE_FILE_PATH\" >> .claude/audit/session.log"
+          },
+          {
+            "type": "command",
+            "command": "if grep -iE '([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})|[0-9]{3}-[0-9]{2}-[0-9]{4}|(AKIA[0-9A-Z]{16})|github_pat_' \"$CLAUDE_FILE_PATH\" 2>/dev/null; then echo \"⚠️  WARNING: File may contain PII or secrets. Review before committing: $CLAUDE_FILE_PATH\"; fi || true"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_TOOL_INPUT\" | grep -qE 'rm -rf /|rm -rf \\.|DROP TABLE|DROP DATABASE|DELETE FROM.*WHERE 1|git push.*--force|git push.*-f|TRUNCATE TABLE|ALTER TABLE.*DROP COLUMN|git reset --hard|kubectl delete|terraform destroy|aws s3 rm.*--recursive|chmod 777'; then echo '{\"decision\": \"block\", \"reason\": \"BLOCKED: Dangerous command detected. This command could be destructive. Use a safer alternative or manually verify intent.\"}'; fi"
+          },
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_TOOL_INPUT\" | grep -iE '(AKIA[0-9A-Z]{16}|github_pat_[a-zA-Z0-9]{36}|sk-[a-zA-Z0-9]{20,}|-----BEGIN PRIVATE KEY|password[\\s]*=|api[_-]?key[\\s]*=)'; then echo '{\"decision\": \"block\", \"reason\": \"BLOCKED: Command contains credential patterns. Remove secrets and try again.\"}'; fi"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "which osascript >/dev/null 2>&1 && osascript -e 'display notification \"Claude needs your attention\" with title \"Claude Code\" sound name \"Glass\"' || (which notify-send >/dev/null 2>&1 && notify-send 'Claude Code' 'Claude needs your attention') || ([ -n \"$CLAUDE_SLACK_WEBHOOK\" ] && curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"Claude Code: Action needed\"}' \"$CLAUDE_SLACK_WEBHOOK\" 2>/dev/null) || true"
+          }
+        ]
+      }
+    ]
+  }
+}
